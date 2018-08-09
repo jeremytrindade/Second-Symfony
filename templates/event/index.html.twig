@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">List Category</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Category</th>
+                    <th>Day</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Event 1</td>
+                    <td>Category 1</td>
+                    <td>Day 1</td>
+                    <td class="text-right"><a href="/event/edit/1" class="btn btn-light">Edit</a><a href="/event/edit/1" class="btn btn-danger">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
