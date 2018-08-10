@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,8 +14,13 @@ class CategoryController extends AbstractController
      */
     public function indexAction()
     {
+        $repo = $this->getDoctrine()->getRepository(Category::class);
+
+        $categories = $repo->findAll();
+
         return $this->render('category/index.html.twig', [
             'controller_name' => 'CategoryController',
+            'categories' => $categories
         ]);
     }
 

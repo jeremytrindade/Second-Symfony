@@ -17,12 +17,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Event 1</td>
-                    <td>Category 1</td>
-                    <td>Day 1</td>
-                    <td class="text-right"><a href="/event/edit/1" class="btn btn-light">Edit</a><a href="/event/edit/1" class="btn btn-danger">Delete</a></td>
-                </tr>
+                {% for event in events %} 
+                    <tr>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.category.name }}</td>
+                        <td>{{ event.day | date('d/m/Y H:i') }}</td>
+                        <td class="text-right"><a href="/event/edit/{{event.id}}" class="btn btn-light">Edit</a><a href="/event/edit/{{event.id}}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>

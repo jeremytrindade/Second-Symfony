@@ -17,11 +17,6 @@ class Event
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $category;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -56,21 +51,15 @@ class Event
      */
     private $create_date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="events")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCategory(): ?int
-    {
-        return $this->category;
-    }
-
-    public function setCategory(int $category): self
-    {
-        $this->category = $category;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -153,6 +142,18 @@ class Event
     public function setCreateDate(\DateTimeInterface $create_date): self
     {
         $this->create_date = $create_date;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
