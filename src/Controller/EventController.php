@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EventController extends AbstractController
 {
     /**
-     * @Route("/events", name="event_list")
+     * @Route("/events", name="home")
      */
     public function indexAction()
     {

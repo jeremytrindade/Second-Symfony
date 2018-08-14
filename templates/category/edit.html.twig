@@ -1,7 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
-
+{% form_theme formCategory 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-Index
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit Category</h3>
+    </div>
+    <div class="panel-body">
+        {{ form_start(formCategory) }}
+        {{ form_row(formCategory.name, {'attr':{'placeholder':'Category Name'}}) }}
+        
+        <button type="submit" class="btn btn-success">
+            {% if editMode %}
+                Save modifications
+            {% else %}
+                Save
+            {% endif %}
+        </button>
+        {{ form(formCategory) }}
+
+    </div>
+
+</div>
 {% endblock %}

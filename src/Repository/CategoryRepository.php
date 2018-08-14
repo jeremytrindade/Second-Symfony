@@ -47,4 +47,7 @@ class CategoryRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function create(){
+        return $this->render('category/create.html.twig');
+    }
 }
