@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,9 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation\Article;
-use Symfony\Bundle\FrameworkBundle\Tests\Fixtures\Validation;
 
 class CategoryController extends AbstractController
 {
@@ -41,9 +42,7 @@ class CategoryController extends AbstractController
             $category = new Category();
         }
 
-        $form = $this->createFormBuilder($category)
-                     ->add('name')
-                     ->getForm();
+        $form = $this->createForm(CategoryType::class, $category);
 
         $form->handleRequest($request);
 
@@ -64,11 +63,20 @@ class CategoryController extends AbstractController
             'editMode' => $category->getId() !== null,
         ]);
     }
-
-    /**
-     * @Route("/category/delete/{id}", name="category_delete")
-     */
-    public function deleteAction(Request $request)
+        /**
+         * @Route("/category/{id}/delete/", name="category_delete")
+         */
+        public function deleteAction(Category $category)
     {
+        if (!$category) {
+            throw $this->createNotFoundException('No category found');
+        }
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($category);
+        $em->flush();
+
+        return $this->redirectToRoute('category_list');
     }
+
 }

@@ -53,7 +53,7 @@ class Event
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="events")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      */
     private $category;
 

@@ -1,14 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% form_theme formEvent 'bootstrap_4_layout.html.twig'%}
 
 {% block body %}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Create Event</h3>
-    </div>
-    <div class="panel-body">
-        Here you create a new event
-    </div>
-</div>
+<h1>Création d'un event !</h1>
+        {{ form_start(formEvent) }}
+        {{ form_row(formEvent.name, {'attr': {'placeholder': "Titre de la event"}}) }}
+        <button type="submit" class="btn btn-success">
+            {% if editMode %}
+                Enregistrer les modifications
+            {% else %}
+                Ajouter un event
+            {% endif %}
+        </button>
+        {{ form_end(formEvent) }}
 {% endblock %}

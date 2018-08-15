@@ -5,7 +5,7 @@
 {% block body %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">List Event <a href="/event/create/" class="btn btn-light text-right">Create</a></h3>
+        <h3 class="panel-title">List Event <a href="{{ path('event_create') }}" class="btn btn-light text-right">Create</a></h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
@@ -23,7 +23,7 @@
                         <td>{{ event.name }}</td>
                         <td>{{ event.category.name }}</td>
                         <td>{{ event.day | date('d/m/Y H:i') }}</td>
-                        <td class="text-right"><a href="/event/edit/{{event.id}}" class="btn btn-light">Edit</a><a href="/event/edit/{{event.id}}" class="btn btn-danger">Delete</a></td>
+                        <td class="text-right"><a href="{{ path('event_edit',{'id': event.id}) }}" class="btn btn-light">Edit</a><a href="{{ path('event_delete',{'id': event.id}) }}" class="btn btn-danger">Delete</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
