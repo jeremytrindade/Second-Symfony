@@ -1,27 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% form_theme formCategory 'bootstrap_4_layout.html.twig' %}
+{% form_theme formCategory 'bootstrap_4_layout.html.twig'%}
+
 {% block body %}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Create Category</h3>
-    </div>
-    <div class="panel-body">
+
+        <h1>Création d'une categorie !</h1>
         {{ form_start(formCategory) }}
-        {{ form_row(formCategory.name, {'attr':{'placeholder':'Category Name'}}) }}
-        
+        {{ form_row(formCategory.name, {'attr': {'placeholder': "Titre de la categorie"}}) }}
         <button type="submit" class="btn btn-success">
             {% if editMode %}
-                Save modifications
+                Enregistrer les modifications
             {% else %}
-                Save
+                Ajouter une categorie
             {% endif %}
         </button>
-        {{ form(formCategory) }}
-
-    </div>
+        {{ form_end(formCategory) }}
     
 
-
-</div>
 {% endblock %}

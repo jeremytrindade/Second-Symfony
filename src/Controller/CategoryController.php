@@ -35,9 +35,9 @@ class CategoryController extends AbstractController
      * @Route("/category/create", name="category_create")
      * @Route("/category/{id}/edit/", name="category_edit")
      */
-    public function form(Article $article = null, Request $request, ObjectManager $manager)
+    public function form(Category $category = null, Request $request, ObjectManager $manager)
     {
-        if (!$article){
+        if (!$category){
             $category = new Category();
         }
 
@@ -60,10 +60,6 @@ class CategoryController extends AbstractController
         }
         
         return $this->render('category/create.html.twig', [
-            'formCategory' => $form->createView(),
-            'editMode' => $category->getId() !== null,
-        ]);
-        return $this->render('category/edit.html.twig', [
             'formCategory' => $form->createView(),
             'editMode' => $category->getId() !== null,
         ]);
