@@ -4,8 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Form\EventType;
-use App\Entity\Category;
-use App\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,7 +45,7 @@ class EventController extends AbstractController
         $form = $this->createForm(EventType::class, $event);
 
         $form->handleRequest($request);
-
+        
         if($form->isSubmitted() && $form->isValid()){
             if(!$event->getId()){
                 $event->SetCreateDate(new \DateTime());

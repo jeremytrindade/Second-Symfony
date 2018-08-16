@@ -1,17 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% form_theme formEvent 'bootstrap_4_layout.html.twig'%}
 
 {% block body %}
 <h1>Création d'un event !</h1>
-        {{ form_start(formEvent) }}
-        {{ form_row(formEvent.name, {'attr': {'placeholder': "Titre de la event"}}) }}
+<h1>Création d'une categorie !</h1>
+{{ form_start(formEvent) }}
+        {{ form_row(formEvent.name, {'attr': {'placeholder': "Event Title"}}) }}
+        {{ form_row(formEvent.details, {'attr': {'placeholder': "Leave here some details."}}) }}
+        {{ form_row(formEvent.category) }}
+        {{ form_row(formEvent.day) }}
+        {{ form_row(formEvent.street_address, {'attr': {'placeholder': "Street Address"}}) }}
+        {{ form_row(formEvent.city, {'attr': {'placeholder': "Paris"}}) }}
+        {{ form_row(formEvent.zipcode, {'attr': {'placeholder': "78711"}}) }}
         <button type="submit" class="btn btn-success">
             {% if editMode %}
-                Enregistrer les modifications
+                Save modifications
             {% else %}
-                Ajouter un event
+                Save new event
             {% endif %}
         </button>
-        {{ form_end(formEvent) }}
+{{ form_end(formEvent) }}
 {% endblock %}
